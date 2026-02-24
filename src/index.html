@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>ICT Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <header id="hdr">
+    <div class="hdr-left">
+      <div class="brand"><div class="accent-bar"></div><span>ICT DASHBOARD</span></div>
+      <div class="ticker-block">
+        <span class="ticker-label">NQ</span>
+        <span id="nq-price" class="ticker-price">—</span>
+        <span id="nq-chg" class="ticker-chg">—</span>
+      </div>
+      <div class="ticker-block">
+        <span class="ticker-label">ES</span>
+        <span id="es-price" class="ticker-price">—</span>
+        <span id="es-chg" class="ticker-chg">—</span>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <span id="active-session" class="hdr-session">—</span>
+      <span id="date-d" class="hdr-date"></span>
+      <span id="clock" class="hdr-clock"></span>
+      <span id="status" class="hdr-status">LOADING</span>
+    </div>
+  </header>
+
+  <!-- ══ GRID ══ -->
+  <main id="grid">
+
+    <!-- LEFT SIDEBAR — session timing -->
+    <aside id="sidebar">
+      <section class="card acc-green">
+        <h2 class="card-t">Kill Zones</h2>
+        <div id="p-kz" class="grow"></div>
+      </section>
+      <section class="card acc-cyan">
+        <h2 class="card-t">ICT Macros</h2>
+        <div id="p-mc" class="grow"></div>
+      </section>
+      <section class="card acc-purple">
+        <h2 class="card-t">Key Opens</h2>
+        <div id="p-ko" class="grow"></div>
+      </section>
+    </aside>
+
+    <!-- CENTER — data tables -->
+    <section class="card acc-blue" style="grid-area:lv">
+      <h2 class="card-t">Key Levels</h2>
+      <div id="p-lv" class="grow"></div>
+    </section>
+    <section class="card acc-red" style="grid-area:lq">
+      <h2 class="card-t">Liquidity Sweeps</h2>
+      <div id="p-lq" class="grow"></div>
+    </section>
+
+    <!-- RIGHT — analysis -->
+    <section class="card acc-amber" style="grid-area:ot">
+      <h2 class="card-t">OTE Levels</h2>
+      <div id="p-ot" class="grow"></div>
+    </section>
+    <section class="card acc-green" style="grid-area:p3">
+      <h2 class="card-t">Power of 3</h2>
+      <div id="p-p3" class="grow"></div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

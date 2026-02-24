@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICT Dashboard — NQ & ES</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body class="bg-[#0b0b11] text-[#e8e8f0] font-['Inter'] min-h-screen">
+
+  <!-- ═══ TOP BAR ═══ -->
+  <header class="bg-[#111119] border-b border-[#222233] px-5 py-3">
+    <div class="max-w-[1400px] mx-auto flex flex-wrap items-center justify-between gap-4">
+      <!-- left: branding + prices -->
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-2">
+          <div class="w-1.5 h-7 rounded-sm bg-emerald-500"></div>
+          <span class="text-sm font-bold tracking-wide text-gray-400 uppercase">ICT Dashboard</span>
+        </div>
+        <!-- NQ -->
+        <div class="flex items-baseline gap-2">
+          <span class="text-xs font-semibold text-gray-500">NQ</span>
+          <span id="nq-price" class="text-xl font-extrabold tabular-nums">—</span>
+          <span id="nq-change" class="text-sm font-semibold tabular-nums text-gray-500">—</span>
+        </div>
+        <!-- ES -->
+        <div class="flex items-baseline gap-2">
+          <span class="text-xs font-semibold text-gray-500">ES</span>
+          <span id="es-price" class="text-xl font-extrabold tabular-nums">—</span>
+          <span id="es-change" class="text-sm font-semibold tabular-nums text-gray-500">—</span>
+        </div>
+      </div>
+      <!-- right: session + clock + status -->
+      <div class="flex items-center gap-5">
+        <span id="active-session" class="text-sm font-semibold text-gray-500">—</span>
+        <div class="flex items-baseline gap-2">
+          <span id="date-display" class="text-xs text-gray-600"></span>
+          <span id="clock" class="text-sm font-mono text-gray-400 tabular-nums"></span>
+        </div>
+        <span id="connection-status" class="text-xs font-bold tracking-wider text-gray-600 uppercase">Connecting…</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- delay banner -->
+  <div class="bg-amber-950/30 border-b border-amber-900/20 px-5 py-1 text-center">
+    <span class="text-[11px] text-amber-500/80">⚠ Yahoo Finance data may be delayed ~15-20 min for futures — use for level tracking only</span>
+  </div>
+
+  <!-- ═══ GRID ═══ -->
+  <main class="max-w-[1400px] mx-auto p-4 grid grid-cols-1 lg:grid-cols-2 gap-3">
+
+    <!-- Kill Zones -->
+    <section class="card">
+      <h2 class="card-title">Kill Zones</h2>
+      <div id="kill-zones"></div>
+    </section>
+
+    <!-- Key Levels -->
+    <section class="card">
+      <h2 class="card-title">Key Levels</h2>
+      <div id="key-levels"></div>
+    </section>
+
+    <!-- Liquidity Sweeps -->
+    <section class="card">
+      <h2 class="card-title">Liquidity Sweeps</h2>
+      <div id="liquidity"></div>
+    </section>
+
+    <!-- Key Opens -->
+    <section class="card">
+      <h2 class="card-title">Key Opens</h2>
+      <div id="key-opens"></div>
+    </section>
+
+    <!-- ICT Macros -->
+    <section class="card">
+      <h2 class="card-title">ICT Macro Times</h2>
+      <div id="macros"></div>
+    </section>
+
+    <!-- OTE -->
+    <section class="card">
+      <h2 class="card-title">OTE Levels</h2>
+      <div id="ote"></div>
+    </section>
+
+    <!-- Power of 3 -->
+    <section class="card lg:col-span-2">
+      <h2 class="card-title">Power of 3</h2>
+      <div id="po3"></div>
+    </section>
+
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

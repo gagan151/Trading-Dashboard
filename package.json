@@ -1,0 +1,35 @@
+{
+  "name": "ict-dashboard",
+  "version": "1.0.0",
+  "description": "ICT Trading Dashboard for NQ & ES",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --publish never"
+  },
+  "dependencies": {
+    "luxon": "^3.5.0",
+    "yahoo-finance2": "^3.13.0"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.ict.dashboard",
+    "productName": "ICT Dashboard",
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false,
+      "icon": "icon.ico"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    }
+  }
+}

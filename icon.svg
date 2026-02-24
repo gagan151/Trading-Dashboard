@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a14"/>
+      <stop offset="100%" stop-color="#111119"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="256" height="256" rx="48" fill="url(#bg)"/>
+
+  <!-- Möbius strip - back half (behind) -->
+  <path d="
+    M 68 148
+    C 48 118, 52 78, 88 58
+    C 112 44, 144 44, 168 58
+    C 192 72, 208 98, 198 128
+  " fill="none" stroke="url(#g2)" stroke-width="18" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Möbius strip - twist connector right -->
+  <path d="
+    M 198 128
+    C 204 142, 196 162, 180 170
+  " fill="none" stroke="url(#g1)" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- Möbius strip - front half (in front) -->
+  <path d="
+    M 180 170
+    C 160 182, 130 188, 108 178
+    C 82 166, 58 140, 58 112
+    C 58 94, 66 78, 80 72
+  " fill="none" stroke="url(#g1)" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- Möbius strip - twist connector left -->
+  <path d="
+    M 80 72
+    C 72 80, 62 100, 68 118
+    L 68 148
+  " fill="none" stroke="url(#g2)" stroke-width="18" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Center crossing overlay to sell the twist -->
+  <path d="
+    M 118 168
+    C 98 156, 78 132, 78 112
+  " fill="none" stroke="url(#g1)" stroke-width="18" stroke-linecap="round"/>
+</svg>

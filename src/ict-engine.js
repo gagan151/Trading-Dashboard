@@ -58,7 +58,46 @@ class ICTEngine {
 
       result.tickers[ticker] = { label, price, daily_change, levels, liquidity, ote, key_opens, po3 };
     }
+
+    // SMT divergence detection
+    result.smt_warnings = this._detectSMT(result.tickers);
+
     return result;
+  }
+
+  // ── SMT divergence ───────────────────────────────────────────────
+  _detectSMT(tickers) {
+    const warnings = [];
+    const nq = tickers['NQ=F'];
+    const es = tickers['ES=F'];
+    
+    if (!nq?.liquidity || !es?.liquidity) return warnings;
+
+    // Compare each liquidity level between NQ and ES
+    const nqLiq = nq.liquidity;
+    const esLiq = es.liquidity;
+
+    for (const nqLevel of nqLiq) {
+      const esLevel = esLiq.find(e => e.label === nqLevel.label);
+      if (!esLevel || nqLevel.status === 'N/A' || esLevel.status === 'N/A') continue;
+
+      // SMT: One swept, other not
+      if (nqLevel.swept && !esLevel.swept) {
+        warnings.push({
+          level: nqLevel.label,
+          message: `NQ swept ${nqLevel.label}, ES did not`,
+          type: 'divergence'
+        });
+      } else if (!nqLevel.swept && esLevel.swept) {
+        warnings.push({
+          level: esLevel.label,
+          message: `ES swept ${esLevel.label}, NQ did not`,
+          type: 'divergence'
+        });
+      }
+    }
+
+    return warnings;
   }
 
   // ── kill zones ──────────────────────────────────────────────────

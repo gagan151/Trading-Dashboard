@@ -23,6 +23,9 @@ window.dashboard.onUpdate((d) => {
     const el = document.getElementById('status');
     el.textContent = 'LIVE';
     el.className = 'hdr-status live';
+    // hide loading overlay
+    const overlay = document.getElementById('loading-overlay');
+    if (overlay) overlay.style.display = 'none';
     firstUpdate = false;
   }
   render(d);
@@ -57,6 +60,23 @@ function render(d) {
   rOpens(nq, es);
   rOTE(nq, es);
   rPo3(nq, es);
+  rSMT(d.smt_warnings);
+}
+
+// ── SMT warnings ────────────────────────────────────────────────────
+function rSMT(warnings) {
+  const banner = document.getElementById('smt-banner');
+  const msgs = document.getElementById('smt-messages');
+  
+  if (!warnings || !warnings.length) {
+    banner.style.display = 'none';
+    return;
+  }
+  
+  banner.style.display = 'block';
+  msgs.innerHTML = warnings.map(w => 
+    `<span style="font-size:11px;font-weight:600;color:#a78bfa">${w.message}</span>`
+  ).join('');
 }
 
 // ── active session (header) ─────────────────────────────────────────
@@ -147,17 +167,22 @@ function rOpens(nq, es) {
   const len = Math.max(nO.length, eO.length);
   if (!len) { el.innerHTML = wait(); return; }
 
-  let h = '';
+  const labelMap = {
+    '18:00 Futures Open': '18:00 TDO',
+    '00:00 Midnight Open': '00:00',
+    '09:30 NY Open': '09:30',
+    '10:00 True Open': '10:00',
+    '13:00 PM Open': '13:00'
+  };
+  
+  let h = `<div class="gh" style="grid-template-columns:1.2fr .9fr .9fr"><div></div><div class="tr">NQ</div><div class="tr">ES</div></div>`;
   for (let i = 0; i < len; i++) {
-    const n = nO[i], e = eO[i], lb = n?.label||e?.label||'';
-    const nNear = n?.near ? ' c-am' : '';
-    const eNear = e?.near ? ' c-am' : '';
-    h += `<div class="row">
-      <span style="font-size:11px;font-weight:600;color:var(--text2);min-width:48px">${lb}</span>
-      <div style="display:flex;gap:12px;font-size:11px">
-        <span class="tab${nNear}" title="NQ">${F(n?.price)}</span>
-        <span class="tab${eNear}" title="ES">${F(e?.price)}</span>
-      </div>
+    const n = nO[i], e = eO[i];
+    const lb = labelMap[n?.label || e?.label] || (n?.label || e?.label || '');
+    h += `<div class="gr" style="grid-template-columns:1.2fr .9fr .9fr">
+      <div class="c-n med" style="font-size:11px">${lb}</div>
+      <div class="tr tab ${n?.near?'c-am':''}" style="font-size:11px">${F(n?.price)}</div>
+      <div class="tr tab ${e?.near?'c-am':''}" style="font-size:11px">${F(e?.price)}</div>
     </div>`;
   }
   el.innerHTML = h;

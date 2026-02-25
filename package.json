@@ -8,6 +8,7 @@
     "build": "electron-builder --win --publish never"
   },
   "dependencies": {
+    "@stoqey/ib": "^1.5.3",
     "luxon": "^3.5.0",
     "yahoo-finance2": "^3.13.0"
   },

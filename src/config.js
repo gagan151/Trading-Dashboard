@@ -2,6 +2,14 @@ module.exports = {
   TICKERS: ['NQ=F', 'ES=F'],
   TICKER_LABELS: { 'NQ=F': 'NQ', 'ES=F': 'ES' },
   POLL_INTERVAL: 30, // seconds
+  
+  // Data source: 'yahoo' or 'ibkr'
+  DATA_SOURCE: 'yahoo',
+  
+  // IBKR connection settings (used when DATA_SOURCE = 'ibkr')
+  IBKR_HOST: '127.0.0.1',
+  IBKR_PORT: 7497, // 7497 for TWS paper, 7496 for TWS live, 4002 for IB Gateway paper, 4001 for live
+  IBKR_CLIENT_ID: 1,
 
   KILL_ZONES: [
     { name: 'Asia',     start: [19, 0], end: [0, 0],  crossesMidnight: true },

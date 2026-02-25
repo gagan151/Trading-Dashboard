@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-const DataFeed = require('./src/data-feed');
+const YahooDataFeed = require('./src/data-feed');
+const IBKRDataFeed = require('./src/data-feed-ibkr');
 const ICTEngine = require('./src/ict-engine');
 const config = require('./src/config');
 
@@ -15,8 +16,10 @@ process.on('unhandledRejection', (err) => {
 });
 
 let win = null;
-const feed = new DataFeed();
+const feed = config.DATA_SOURCE === 'ibkr' ? new IBKRDataFeed() : new YahooDataFeed();
 const engine = new ICTEngine();
+
+console.log(`[Dashboard] Using data source: ${config.DATA_SOURCE.toUpperCase()}`);
 
 function createWindow() {
   win = new BrowserWindow({

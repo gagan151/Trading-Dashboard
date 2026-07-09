@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* Dark "trading terminal" theme tokens */
+@theme {
+  --color-bg: #0a0e14;
+  --color-panel: #121722;
+  --color-panel-2: #161c28;
+  --color-border: #232b39;
+  --color-fg: #c9d1d9;
+  --color-muted: #7d8a9c;
+  --color-up: #26a69a;
+  --color-down: #ef5350;
+  --color-accent: #3b82f6;
+  --color-amber: #f59e0b;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Thin scrollbars to match the trading-terminal feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3342;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #364254;
+}
